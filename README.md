@@ -25,3 +25,13 @@ unlike Kubernetes, Chef/Puppet, CoreOs, etc. We are not trying to run a datacent
 This will likely target AWS and Digital Ocean as first supported providers, but should be easy to modify
 and expand for many other providers that can be set up by terraform (or even plug in the credentials of
 bare-metal machines to just use ansible)
+
+## Usage (WIP)
+
+```shell
+make init
+cd aws/validator
+terraform validate -var key_name=foo
+terraform plan -var key_name=foo
+terraform apply -var key_name=foo
+```

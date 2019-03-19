@@ -1,6 +1,9 @@
-.PHONY: tools
+.PHONY: tools init
 
 TERRAFORM_BIN := terraform_0.11.13_linux_amd64.zip
+
+init: tools
+	terraform init
 
 # Note makefile only designed for Linux
 tools: /usr/local/bin/terraform

@@ -1,3 +1,8 @@
+# Specify the provider and access details
+provider "aws" {
+  region = "${var.aws_region}"
+}
+
 # Our default security group to access
 # the instances over SSH and HTTP
 resource "aws_security_group" "validator" {
@@ -56,6 +61,18 @@ resource "aws_instance" "validator" {
   vpc_security_group_ids = ["${aws_security_group.validator.id}"]
   subnet_id              = "${aws_subnet.tf_test_subnet.id}"
 
+  provisioner "file" {
+      source = "./scripts"
+      destination = "/scripts"
+  }
+
+  provisioner "remote-exec" {
+      inline = [
+          "chmod +x /scripts/*",
+          "/scripts/install.sh",
+          "/scripts/init.sh",
+      ]
+  }
 
   #Instance tags
   tags = {
