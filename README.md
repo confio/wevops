@@ -31,7 +31,9 @@ bare-metal machines to just use ansible)
 ```shell
 make init
 cd aws/validator
-terraform validate -var key_name=foo
-terraform plan -var key_name=foo
-terraform apply -var key_name=foo
+terraform validate -var key_name=xps
+terraform plan -var key_name=xps
+terraform apply -var key_name=xps
+terraform output
+terraform destroy
 ```
